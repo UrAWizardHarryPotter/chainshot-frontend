@@ -4,6 +4,7 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {ethers} from 'ethers';
+import pohABI from '../pohABI.json';
 
 import { getSortedPostsData } from '../lib/idprotocols'
 
@@ -32,13 +33,14 @@ export default function Home({ allPostsData }) {
 
     // connect to proof of humanity
     let POH_CONTRACT_ADDRESS = '0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb';
-    // STILL NEED TO DO THIS
-    let POH_ABI;
+    // Parse poh ABI
+    console.log(JSON.parse(pohABI.result));
+    let POH_ABI = JSON.parse(pohABI.result);
 
     // Assign new PoH Web3 instance
     const pohContract = new ethers.Contract(POH_CONTRACT_ADDRESS, POH_ABI, provider);
 
-    let result = await pohContract.functions.isRegistered(address).call();
+    let result = await pohContract.functions.isRegistered(address);
 
     console.log(result);
 
