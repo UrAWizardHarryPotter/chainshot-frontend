@@ -19,18 +19,28 @@ export async function getStaticProps() {
 export default function Home({ allPostsData }) {
   const router = useRouter();
 
-  async function main() {
+  async function poh() {
     // connect to metamask
     await ethereum.request({ method: 'eth_requestAccounts' });
 
     // set up ethers provider
     let provider = new ethers.providers.Web3Provider(window.ethereum);
 
-
     const signer = await provider.getSigner();
     const address = await signer.getAddress();
     console.log("signer address: " + address);
-    router.push('api/idprotocols');
+
+    // connect to proof of humanity
+    let POH_CONTRACT_ADDRESS = '0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb';
+    // STILL NEED TO DO THIS
+    let POH_ABI;
+
+    // Assign new PoH Web3 instance
+    const pohContract = new ethers.Contract(POH_CONTRACT_ADDRESS, POH_ABI, provider);
+
+    let result = await pohContract.functions.isRegistered(address).call();
+
+    console.log(result);
 
 }
 
@@ -40,9 +50,11 @@ export default function Home({ allPostsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <button type="button" onClick={() => main()}>Connect wallet address</button>
+        <p>Which protocol do you want to connect?</p>
+        <button type="button" onClick={() => poh()}>Proof of Humanity</button>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+      <button type="button" onClick={() => poh()}>BrightID</button>
       </section>
     </Layout>
   )
