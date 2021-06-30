@@ -6,14 +6,15 @@ import { useRouter } from 'next/router'
 import {ethers} from 'ethers';
 import pohABI from '../pohABI.json';
 import React, { useState, useEffect, Component } from 'react';
-import { List, Segment, Button, Input } from 'semantic-ui-react';
+import { List, Segment, Button, Input, Container, Divider, Form } from 'semantic-ui-react';
 
 
 class Verified extends Component {
     state = {
       address: '',
       verification: false,
-      receiverAddress: ''
+      value: '',
+      recipient: ''
     }
 
   async pohHuman() {
@@ -46,20 +47,47 @@ class Verified extends Component {
     this.pohHuman();
   }
 
+  async onSubmit() {
+    // ANTONIO - this is where we interact with the smart contract to check if the recipient address exists
+
+    // To access Ether value, reference this.state.value
+    // To access recipient address, reference this.state.recipient
+
+    // if it does, we can transfer money to it (just use ethers on the front end)
+  }
+
 
   render() {
     return (
     <Layout home>
       <Head>
       </Head>
-      <Segment>You are {this.state.verification == false ? 'NOT VERIFIED' : 'VERIFIED'}</Segment>
+      <Divider></Divider>
+      <Container textAlign='center'>YOU ARE {this.state.verification == false ? 'NOT VERIFIED' : 'VERIFIED'}</Container>
+      <Divider></Divider>
       <List>
         <List.Item>
           <List.Header>My Wallet Address</List.Header>{this.state.address}
         </List.Item>
       </List>
         {/* Build this form to verify */}
-      <Input action='Verify' placeholder='Receiver Address...'/>
+      <Form onSubmit={this.onSubmit} >
+         <Form.Field>
+          <label>Recipient Address</label>
+          <Input
+            value={this.state.recipient}
+            onChange={event => this.setState({ recipient: event.target.value })}
+          />
+          </Form.Field>
+          <Form.Field>
+           <label>Amount in Ether</label>
+             <Input
+              value={this.state.value}
+              onChange={event => this.setState({ value: event.target.value })}
+             />
+          </Form.Field>
+          <Button type='submit'>Submit</Button>
+      </Form>
     </Layout>
     )
   }
