@@ -6,8 +6,9 @@ import Link from 'next/link'
 import { Container } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
-const name = 'Identity - Proof of Concept'
-export const siteTitle = 'Identity PoC'
+const name = 'Webport Address';
+const tagline = '"One-click identity login for the Internet"';
+export const siteTitle = 'Identity PoC';
 
 export default function Layout({ children, home }) {
   return (
@@ -22,7 +23,7 @@ export default function Layout({ children, home }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="An pooled identity proof of concept"
+          content="A pooled identity proof of concept"
         />
         <meta
           property="og:image"
@@ -37,6 +38,7 @@ export default function Layout({ children, home }) {
         {home ? (
           <>
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h2 className={utilStyles.headingSm}>{tagline}</h2>
           </>
         ) : (
           <>
