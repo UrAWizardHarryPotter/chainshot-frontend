@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {ethers} from 'ethers';
 import pohABI from '../pohABI.json';
+import { Button } from 'semantic-ui-react'
 
 import { getSortedPostsData } from '../lib/idprotocols'
 
@@ -27,9 +28,7 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Which protocol do you want to connect?</p>
-        <button type="button" onClick={() => router.push('/verifying')}>
-          Proof of Humanity
-        </button>
+        <Button primary onClick={() => router.push('/verifying')}>Proof of Humanity</Button>
       </section>
     </Layout>
   )

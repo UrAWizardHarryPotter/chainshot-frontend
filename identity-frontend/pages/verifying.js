@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import {ethers} from 'ethers';
 import pohABI from '../pohABI.json';
 import React, { useState, useEffect } from 'react';
+import { Dimmer, Loader } from 'semantic-ui-react'
 
 export default function Verifying({props}) {
   const router = useRouter();
@@ -45,9 +46,9 @@ export default function Verifying({props}) {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>Connecting identity...</p>
-      </section>
+        <Dimmer active inverted>
+          <Loader inverted>Connecting and verifying identity...</Loader>
+        </Dimmer>
     </Layout>
   )
 }

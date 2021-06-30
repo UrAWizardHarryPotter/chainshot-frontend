@@ -3,14 +3,22 @@ import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { Container } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css';
 
 const name = 'Identity - Proof of Concept'
 export const siteTitle = 'Identity PoC'
 
 export default function Layout({ children, home }) {
   return (
+    <Container>
     <div className={styles.container}>
       <Head>
+      <link
+          async
+          rel="stylesheet"
+          href="//cdn.jsdelivr.net/npm/semantic-ui@2.0.0/dist/semantic.min.css"
+        />
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
@@ -49,5 +57,6 @@ export default function Layout({ children, home }) {
         </div>
       )}
     </div>
+    </Container>
   )
 }
