@@ -5,5 +5,5 @@
 2. npm install
 
 // run development mode
-3. npm run-dev
+3. npm run dev
 4. navigate in browser to http://localhost:03000
