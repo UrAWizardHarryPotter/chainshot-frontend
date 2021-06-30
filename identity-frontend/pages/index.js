@@ -7,17 +7,6 @@ import {ethers} from 'ethers';
 import pohABI from '../pohABI.json';
 import { Button } from 'semantic-ui-react'
 
-import { getSortedPostsData } from '../lib/idprotocols'
-
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData
-    }
-  }
-}
-
 export default function Home({ allPostsData }) {
   const router = useRouter();
 
