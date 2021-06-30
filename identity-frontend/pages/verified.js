@@ -43,11 +43,30 @@ class Verified extends Component {
     return;
   }
 
+  async pohRecipient() {
+    // connect to proof of humanity
+    let POH_CONTRACT_ADDRESS = '0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb';
+    // Parse poh ABI
+    let POH_ABI = JSON.parse(pohABI.result);
+
+    // Assign new PoH Web3 instance
+    const pohContract = new ethers.Contract(POH_CONTRACT_ADDRESS, POH_ABI, provider);
+
+    let result = await pohContract.functions.isRegistered(this.state.recipient);
+
+    console.log(result[0]);
+
+    return this.state.verification == true ? true : false;
+  }
+
   componentDidMount() {
     this.pohHuman();
   }
 
   async onSubmit() {
+    // check if the recipient is verified on PoH
+    await this.pohRecipient();
+
     // ANTONIO - this is where we interact with the smart contract to check if the recipient address exists
 
     // To access Ether value, reference this.state.value

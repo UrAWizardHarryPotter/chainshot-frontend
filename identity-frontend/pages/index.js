@@ -33,14 +33,3 @@ export default function Home({ allPostsData }) {
     </Layout>
   )
 }
-
-        // <ul className={utilStyles.list}>
-        //   {allPostsData.map(({ id, title }) => (
-        //     <li className={utilStyles.listItem} key={id}>
-        //       <Link href={`/idprotocols/${id}`}>
-        //         <a>{title}</a>
-        //       </Link>
-        //       <br />
-        //     </li>
-        //   ))}
-        // </ul>
