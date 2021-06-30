@@ -4,18 +4,17 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import {ethers} from 'ethers';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 
-export default function Verifying({props}) {
+export default function Verified(props) {
   const router = useRouter();
 
   return (
     <Layout home>
       <Head>
-        <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Connecting identity...</p>
+        <p>Connected!</p>
       </section>
     </Layout>
   )

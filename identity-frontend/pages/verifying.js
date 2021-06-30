@@ -8,9 +8,8 @@ import pohABI from '../pohABI.json';
 import React, { useState, useEffect } from 'react';
 import { Dimmer, Loader } from 'semantic-ui-react'
 
-export default function Verifying({props}) {
+export default function Verifying(props) {
   const router = useRouter();
-
 
   async function pohHuman() {
     // connect to metamask
@@ -34,7 +33,8 @@ export default function Verifying({props}) {
     let result = await pohContract.functions.isRegistered(address);
 
     console.log(result[0]);
-    return result[0];
+
+    return router.push('/verified');
   }
 
   useEffect(() => {
