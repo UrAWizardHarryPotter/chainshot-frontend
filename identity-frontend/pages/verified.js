@@ -6,12 +6,14 @@ import { useRouter } from 'next/router'
 import {ethers} from 'ethers';
 import pohABI from '../pohABI.json';
 import React, { useState, useEffect, Component } from 'react';
+import { List, Segment, Button, Input } from 'semantic-ui-react';
 
 
 class Verified extends Component {
     state = {
       address: '',
-      verification: false
+      verification: false,
+      receiverAddress: ''
     }
 
   async pohHuman() {
@@ -50,6 +52,14 @@ class Verified extends Component {
     <Layout home>
       <Head>
       </Head>
+      <Segment>You are {this.state.verification == false ? 'NOT VERIFIED' : 'VERIFIED'}</Segment>
+      <List>
+        <List.Item>
+          <List.Header>My Wallet Address</List.Header>{this.state.address}
+        </List.Item>
+      </List>
+        {/* Build this form to verify */}
+      <Input action='Verify' placeholder='Receiver Address...'/>
     </Layout>
     )
   }
