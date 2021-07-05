@@ -7,7 +7,7 @@ import {ethers} from 'ethers';
 import pohABI from '../pohABI.json';
 import React, { useState, useEffect, Component } from 'react';
 import { List, Segment, Button, Input, Container, Divider, Form } from 'semantic-ui-react';
-
+import
 
 class Verified extends Component {
     state = {
@@ -48,9 +48,8 @@ class Verified extends Component {
   }
 
   async onSubmit() {
-    // ANTONIO - this is where we interact with the smart contract to check if the recipient address exists
-
     // To access Ether value, reference this.state.value
+
     // To access recipient address, reference this.state.recipient
 
     // if it does, we can transfer money to it (just use ethers on the front end)
