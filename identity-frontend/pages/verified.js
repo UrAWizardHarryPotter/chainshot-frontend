@@ -7,7 +7,7 @@ import {ethers} from 'ethers';
 import pohABI from '../pohABI.json';
 import React, { useState, useEffect, Component } from 'react';
 import { List, Segment, Button, Input, Container, Divider, Form } from 'semantic-ui-react';
-import
+import IdPool, { abi as IdPool_ABI }  from '../../artifacts/contracts/IdPool.sol/IdPool.json';
 
 class Verified extends Component {
     state = {
@@ -49,10 +49,36 @@ class Verified extends Component {
 
   async onSubmit() {
     // To access Ether value, reference this.state.value
+    let ethValue = ethers.utils.parseEther(this.state.value.toString());
+    console.log(ethValue);
+
+    // Assign idPoolContract to contract address after the sample-script is deployed
+    const idPoolAddress ='0x5FbDB2315678afecb367f032d93F642f64180aa3';
+
+    // call the smart contract's .send message
+    if (typeof window.ethereum !== 'undefined') {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const contract = new ethers.Contract(idPoolAddress, IdPool_ABI, provider)
+      try {
+        const signer = await provider.getSigner();
+        const signerAddress = await signer.getAddress();
+
+        // take the event that was emiited and do something
+        const tx = await contract.send(signerAddress, this.state.recipient, ethValue);
+
+        // this takes the transaction invokation and waits until it is mined... you can pass how many blocks you want to wait
+        await tx.wait();
+
+      } catch (err) {
+        console.log("Error: ", err)
+      }
+    }
 
     // To access recipient address, reference this.state.recipient
+    // checks if recipient is verified in IdPool
 
-    // if it does, we can transfer money to it (just use ethers on the front end)
+
+    // if recipient is verified, transfer money to them
   }
 
 
